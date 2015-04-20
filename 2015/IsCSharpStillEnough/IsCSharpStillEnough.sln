@@ -9,6 +9,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DesignPatterns.FP", "Design
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rop", "Rop\Rop.fsproj", "{CDFB3749-870E-402C-8D08-6221BB3E2405}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ShoppingCart", "ShoppingCart\ShoppingCart.fsproj", "{F1E99960-337F-4D03-A85E-550817C6CE1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CDFB3749-870E-402C-8D08-6221BB3E2405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDFB3749-870E-402C-8D08-6221BB3E2405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDFB3749-870E-402C-8D08-6221BB3E2405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E99960-337F-4D03-A85E-550817C6CE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E99960-337F-4D03-A85E-550817C6CE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E99960-337F-4D03-A85E-550817C6CE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E99960-337F-4D03-A85E-550817C6CE1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
