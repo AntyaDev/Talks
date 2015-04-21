@@ -9,7 +9,9 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DesignPatterns.FP", "Design
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rop", "Rop\Rop.fsproj", "{CDFB3749-870E-402C-8D08-6221BB3E2405}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ShoppingCart", "ShoppingCart\ShoppingCart.fsproj", "{F1E99960-337F-4D03-A85E-550817C6CE1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.OOP", "ShoppingCart.OOP\ShoppingCart.OOP.csproj", "{E9D90857-9B92-4FA2-8F09-F61EB5CA967F}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ShoppingCart.FP", "ShoppingCart.FP\ShoppingCart.FP.fsproj", "{F1E99960-337F-4D03-A85E-550817C6CE1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{CDFB3749-870E-402C-8D08-6221BB3E2405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDFB3749-870E-402C-8D08-6221BB3E2405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDFB3749-870E-402C-8D08-6221BB3E2405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9D90857-9B92-4FA2-8F09-F61EB5CA967F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D90857-9B92-4FA2-8F09-F61EB5CA967F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9D90857-9B92-4FA2-8F09-F61EB5CA967F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9D90857-9B92-4FA2-8F09-F61EB5CA967F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1E99960-337F-4D03-A85E-550817C6CE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1E99960-337F-4D03-A85E-550817C6CE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1E99960-337F-4D03-A85E-550817C6CE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU

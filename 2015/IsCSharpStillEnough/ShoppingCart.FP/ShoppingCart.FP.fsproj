@@ -8,11 +8,11 @@
     <ProjectGuid>f1e99960-337f-4d03-a85e-550817c6ce1e</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ShoppingCart</RootNamespace>
-    <AssemblyName>ShoppingCart</AssemblyName>
+    <AssemblyName>ShoppingCart.FP</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
-    <Name>ShoppingCart</Name>
+    <Name>ShoppingCart.FP</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
