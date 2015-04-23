@@ -1,8 +1,8 @@
 ﻿module Rop
 
-type Result<'TSuccess, 'TMessage> =
+type Result<'TSuccess, 'TFailure> =
    | Success of 'TSuccess
-   | Failure of 'TMessage
+   | Failure of 'TFailure
    
 let succeed x = Success(x) 
 
