@@ -38,14 +38,10 @@ type Cart with
 
 let emptyCart = Cart.New
  
-let cartA = (Cart.New).Add "A"
+let cartA = emptyCart.Add "A"
  
 let cartAB = cartA.Add "B"
  
 let cartB = cartAB.Remove "A"
- 
-let emptyCart2 = cartB.Remove "B"
- 
-let emptyCart3 = emptyCart2.Remove "B"
  
 let paidCart = cartAB.Pay 100m
