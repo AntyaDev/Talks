@@ -2,44 +2,52 @@
 
 namespace DesignPatterns.OOP
 {
-    interface IStrategy
+    interface ISortStrategy
     {
-        void Algorithm();
+        void Algorithm(int[] array);
     }
 
-    class ConcreteStrategy1 : IStrategy
+    class QuickSortStrategy : ISortStrategy
     {
-        public void Algorithm()
+        public void Algorithm(int[] array)
         {
-            Console.WriteLine("ConcreteStrategy1");
+            Console.WriteLine("QuickSortStrategy");
         }
     }
 
-    class ConcreteStrategy2 : IStrategy
+    class ShellSortStrategy : ISortStrategy
     {
-        public void Algorithm()
+        public void Algorithm(int[] array)
         {
-            Console.WriteLine("ConcreteStrategy2");
+            Console.WriteLine("ShellSortStrategy");
         }
     }
+
+    class BubbleSortStrategy : ISortStrategy
+    {
+        public void Algorithm(int[] array)
+        {
+            Console.WriteLine("BubbleSortStrategy");
+        }
+    }    
 
     class Context
     {
-        IStrategy _strategy;
+        ISortStrategy _strategy;
 
-        public Context(IStrategy strategy)
+        public Context(ISortStrategy strategy)
         {
             _strategy = strategy;
         }
 
-        public void SetStrategy(IStrategy strategy)
+        public void SetStrategy(ISortStrategy strategy)
         {
             _strategy = strategy;
         }
 
-        public void ExecuteOperation()
+        public void ExecuteOperation(int[] array)
         {
-            _strategy.Algorithm();
+            _strategy.Algorithm(array);
         }
     }
 
@@ -47,11 +55,17 @@ namespace DesignPatterns.OOP
     {
         public void Demo()
         {
-            var context = new Context(new ConcreteStrategy1());
-            context.ExecuteOperation();
+            var array = new int[] { 1, 2, 3, 5, 10, -2 };
+            var context = new Context(new QuickSortStrategy());
+            context.ExecuteOperation(array);
 
-            context.SetStrategy(new ConcreteStrategy2());
-            context.ExecuteOperation();
+            array = new int[] { 1, 2, 3, 5, 10, -2 };
+            context.SetStrategy(new ShellSortStrategy());
+            context.ExecuteOperation(array);
+
+            array = new int[] { 1, 2, 3, 5, 10, -2 };
+            context.SetStrategy(new BubbleSortStrategy());
+            context.ExecuteOperation(array);
         }
     }
 }
