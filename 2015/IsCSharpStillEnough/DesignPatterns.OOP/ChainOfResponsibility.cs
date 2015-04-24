@@ -52,11 +52,11 @@ namespace DesignPatterns.OOP
         }
     }
 
-    class Managment : LeaveHandler
+    class TopManager : LeaveHandler
     {
         public override void ProcessLeave(LeaveSettings leaveSettings)
         {
-            Console.WriteLine("Leave applied for {0}, on {1} days by Managment",
+            Console.WriteLine("Leave applied for {0}, on {1} days by TopManager",
                 leaveSettings.UserId, leaveSettings.NumberOfDays);
         }
     }
@@ -67,10 +67,10 @@ namespace DesignPatterns.OOP
         {
             var reportManger = new ReportingManager();
             var projectManager = new ProjectManager();
-            var managment = new Managment();
+            var topManager = new TopManager();
 
             reportManger.SetNextLeaveHandler(projectManager);
-            projectManager.SetNextLeaveHandler(managment);
+            projectManager.SetNextLeaveHandler(topManager);
 
             reportManger.ProcessLeave(new LeaveSettings("Test User Id", 2));
             reportManger.ProcessLeave(new LeaveSettings("Test User Id", 5));
