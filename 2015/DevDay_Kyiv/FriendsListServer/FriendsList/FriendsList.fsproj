@@ -55,6 +55,8 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Domain\DomainPrimitiveTypes.fs" />
+    <Compile Include="Domain\FriendItem.fs" />
     <Compile Include="App.fs" />
     <Content Include="packages.config" />
     <None Include="App.config" />
