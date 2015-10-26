@@ -56,8 +56,8 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Rop.fs" />
-    <Compile Include="Domain\DomainPrimitiveTypes.fs" />
-    <Compile Include="Domain\Friends.fs" />
+    <Compile Include="Domain\PrimitiveTypes.fs" />
+    <Compile Include="Domain\Friend.fs" />
     <Compile Include="App.fs" />
     <Content Include="packages.config" />
     <None Include="App.config" />
