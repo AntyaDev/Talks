@@ -1,7 +1,7 @@
 ﻿namespace Domain
 
 open Rop
-open Domain.DomainPrimitiveTypes
+open Domain.PrimitiveTypes
 
 type Friend = {
   Id: Id
@@ -16,8 +16,6 @@ module FriendM =
 
 
 module FriendsM =
-  open Rop
-  
   type Command = 
     | AddFriend of fullName:string
     | DeleteFriend of id:string

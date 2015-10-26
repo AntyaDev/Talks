@@ -1,4 +1,4 @@
-﻿namespace Domain.DomainPrimitiveTypes
+﻿namespace Domain.PrimitiveTypes
 open Rop
 
 type Id = Id of System.Guid
