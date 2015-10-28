@@ -1,19 +1,13 @@
-﻿module Domain.PrimitiveTypes
+﻿namespace PrimitiveTypes
 open Rop
+open Errors
 
-type Id = Id of System.Guid
-type String200 = String200 of string
-
-module StringValidator =
-  type StringError = 
-     | Missing
-     | MustNotBeLongerThan of int
-     | DoesntMatchPattern of string
-
+module private StringValidator =
+  
   let validLength maxLength (str:string) =
      match str with
-     | null -> Failure StringError.Missing
-     | _ when str.Length > maxLength -> MustNotBeLongerThan(maxLength) |> Failure
+     | null -> Failure Error.StrMissing
+     | _ when str.Length > maxLength -> Error.StrMustNotBeLongerThan(maxLength) |> Failure
      | _    -> Success str
 
   let createStr ctor result =
@@ -22,20 +16,28 @@ module StringValidator =
      | Failure msg -> Failure msg
 
 
-module IdM =
-  open StringValidator
+module Id =
+  
+  type Id = Id of System.Guid
 
   let validate idStr = 
     match System.Guid.TryParse idStr with
     | (true, guid) -> Success guid
-    | _            -> DoesntMatchPattern("GUID") |> Failure
+    | _            -> Error.StrDoesntMatchPattern("GUID") |> Failure
 
   let create = validate >> map Id 
 
   let newId = System.Guid.NewGuid() |> Id
 
+  let get (Id v) = v
+
+  let toStr (Id v) = v.ToString("N")
+
           
-module String200M =
+module String200 =
+  
+  type String200 = String200 of string
+
   let validate = StringValidator.validLength 200
 
   let create = validate >> StringValidator.createStr String200

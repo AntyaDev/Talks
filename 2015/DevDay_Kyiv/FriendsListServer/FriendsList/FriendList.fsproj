@@ -8,11 +8,11 @@
     <ProjectGuid>e44a747f-e3ee-47bb-b359-d64ca0c88bfb</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FriendsList</RootNamespace>
-    <AssemblyName>FriendsList</AssemblyName>
+    <AssemblyName>FriendList</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <Name>FriendsList</Name>
+    <Name>FriendList</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,9 +55,13 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Json.fs" />
     <Compile Include="Rop.fs" />
-    <Compile Include="Domain\PrimitiveTypes.fs" />
-    <Compile Include="Domain\Friend.fs" />
+    <Compile Include="Errors.fs" />
+    <Compile Include="PrimitiveTypes.fs" />
+    <Compile Include="State.fs" />
+    <Compile Include="FriendList.fs" />
+    <Compile Include="Db.fs" />
     <Compile Include="App.fs" />
     <Content Include="packages.config" />
     <None Include="App.config" />
@@ -68,6 +72,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Suave">
       <HintPath>..\packages\Suave.0.32.1\lib\net40\Suave.dll</HintPath>
       <Private>True</Private>

@@ -1,22 +1,35 @@
 ﻿open Suave
-open Suave.Http.Successful 
 open Suave.Web
-open System.IO
-open System
 open Suave.Http
 open Suave.Http.Applicatives
+open Suave.Http.RequestErrors
+open Rop
+open Errors
+open PrimitiveTypes
+open PrimitiveTypes.Id
+open State
+open Suave.Http.Successful
+open FriendList
 
-let indexHtml = File.ReadAllText("client/index.html")
-let bundlejs = File.ReadAllText("client/bundle.js")
+let transformer = {
+  ZeroState = FriendList.State.Zero
+  Reducer = FriendList.reducer
+  Producer = FriendList.producer 
+}
 
-let app = 
-   choose [
-      GET >>= choose [
-         path "/" >>= Writers.setMimeType "text/html" >>= OK indexHtml 
-         path "/bundle.js" >>= Writers.setMimeType "application/javascript" >>= OK bundlejs
-      ]; 
-   ]
+let cmdHandler = State.createHandler(transformer, Db.loadState, Db.saveState)
 
-//choose [ GET "/" >>= Writers.setMimeType "text/html" >>= OK indexHtml ]
+let createApp (handler:Command * Option<Id> -> Result<Id*Event,Error>) = 
+  choose [
+    GET >>= path "/" >>= OK "Hi!"
+    POST >>= choose [
+      path "/friendslist" >>= warbler(fun _ ->
+        match handler(Command.CreateFriendList, None) with
+        | Success (id,event) -> id |> Id.toStr |> OK 
+        | Failure e          -> BAD_REQUEST ""
+      )
+    ]
+  ]
 
+let app = createApp cmdHandler
 startWebServer defaultConfig app
