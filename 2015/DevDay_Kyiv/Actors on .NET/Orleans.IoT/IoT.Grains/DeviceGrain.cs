@@ -7,26 +7,41 @@ namespace IoT.Grains
 {
     public class DeviceGrain : Grain, IDeviceGrain
     {
-        double temp;
+        State _state;
         const double MAX_TEMP = 100;
-        
-        public Task SetTemperature(double value)
-        {
+
+        public override Task OnActivateAsync()
+        {            
             var id = this.GetPrimaryKeyString();
+            // _state = await _stateStorage.LoadStateAsync(id);
+            _state = new State { SystemName = "", Temp = 0, Id = id };
+            return base.OnActivateAsync();
+        }
 
-            if (value >= MAX_TEMP && temp < MAX_TEMP)
-                Console.WriteLine("Temperature threshold exceeded for device {0}", id);
-
-            if (value < MAX_TEMP && temp >= MAX_TEMP)
-                Console.WriteLine("Temperature back to normal for device {0}", id);
-
-            this.temp = value;
-            return TaskDone.Done;
+        public async Task SetTemperature(double value)
+        {            
+            _state.Temp = value;
+            var systemGrain = GrainFactory.GetGrain<ISystemGrain>(_state.SystemName);
+            await systemGrain.SetTemperature(value, _state.Id);            
         }
 
         public Task<double> GetTemperature()
         {
-            return Task.FromResult<double>(this.temp);
+            return Task.FromResult<double>(_state.Temp);
+        }
+
+        public Task JoinSystem(string name)
+        {
+            _state.SystemName = name; 
+            // await _stateStorage.SaveStateAsync(_state);
+            return TaskDone.Done;
+        }
+
+        class State
+        {
+            public string Id { get; set; }
+            public double Temp { get; set; }
+            public string SystemName { get; set; }
         }
     }
 }

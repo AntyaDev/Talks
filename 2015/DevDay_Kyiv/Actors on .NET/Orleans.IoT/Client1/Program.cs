@@ -19,7 +19,10 @@ namespace Client1
         static async Task Run()
         {
             var device = GrainClient.GrainFactory.GetGrain<IDeviceGrain>("device_1");
-            await device.SetTemperature(20);
+            await device.JoinSystem("system_1");
+            await device.SetTemperature(20);            
+            await device.SetTemperature(60);
+            await device.SetTemperature(160);
             var currTemp = await device.GetTemperature();
         }
     }
