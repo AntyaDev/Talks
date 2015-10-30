@@ -5,11 +5,11 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Akka.Chat", "Akka.Chat", "{0A8F461E-63FC-4730-9429-F40E27576A62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{35777069-FFCA-44FC-A65C-C2F7559FCF39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Akka.Chat\Messages\Messages.csproj", "{35777069-FFCA-44FC-A65C-C2F7559FCF39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{F656ABEB-3913-4A40-BA43-3F4F80E871EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Akka.Chat\Server\Server.csproj", "{F656ABEB-3913-4A40-BA43-3F4F80E871EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{3140A52D-DB79-4039-B678-E509117CCE25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Akka.Chat\Client\Client.csproj", "{3140A52D-DB79-4039-B678-E509117CCE25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
