@@ -48,8 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Rop.fs" />
+    <Compile Include="Domain\Errors.fs" />
+    <Compile Include="Domain\PrimitiveTypes.fs" />
+    <Compile Include="Domain\ShoppingCart.fs" />
     <Compile Include="Program.fs" />
-    <Compile Include="ShoppingCart.fs" />
     <None Include="App.config" />
   </ItemGroup>
   <PropertyGroup>
