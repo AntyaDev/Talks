@@ -21,7 +21,7 @@ module ShoppingCart =
     Products: Product list
     IsPayed: bool
   } with
-    member this.TryOperate(f: CartState -> Result<'a,Error>) = 
+    member this.TryOperate(f: CartState -> Result<'T,Error>) = 
       if this.IsPayed then fail CantBeAppliedToPaidCart
       elif this.Id.IsNone then fail CantBeAppliedToPaidCart
       else f(this)
@@ -70,4 +70,5 @@ module ShoppingCart =
     match event with
     | CartCreated cartId -> { state with Id = Some(cartId) }
     | ProductAdded product -> { state with Products = product :: state.Products }
-    | ProductRemoved productId -> { state with Products = state.Products |> List.filter(fun p -> p.Id <> productId) }
+    | ProductRemoved productId -> { state with Products = state.Products
+                                                          |> List.filter(fun p -> p.Id <> productId) }
