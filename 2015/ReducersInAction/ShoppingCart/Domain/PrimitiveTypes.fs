@@ -6,14 +6,14 @@ module private StringValidator =
   
   let validLength maxLength (str:string) = 
     match str with
-    | null -> Failure Error.StrMissing
-    | _ when str.Length > maxLength -> Error.StrMustNotBeLongerThan(maxLength) |> Failure
-    | _ -> Success str
+    | null -> fail Error.StrMissing
+    | _ when str.Length > maxLength -> Error.StrMustNotBeLongerThan(maxLength) |> fail
+    | _ -> ok str
   
   let createStr ctor result = 
     match result with
-    | Success str -> Success(ctor str)
-    | Failure msg -> Failure msg
+    | Ok str -> ok(ctor str)
+    | Bad msg -> fail msg
 
 module Id = 
   
@@ -21,8 +21,8 @@ module Id =
   
   let validate idStr = 
     match System.Guid.TryParse idStr with
-    | (true, guid) -> Success guid
-    | _ -> Error.StrDoesntMatchPattern("GUID") |> Failure
+    | (true, guid) -> ok guid
+    | _ -> Error.StrDoesntMatchPattern("GUID") |> fail
   
   let create = validate >> map Id
   let newId = System.Guid.NewGuid() |> Id

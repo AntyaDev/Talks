@@ -8,3 +8,6 @@ module Errors =
     | StrMustNotBeLongerThan of maxLen:int
     | StrDoesntMatchPattern of pattern:string
     | FriendListNotFound of id:Guid
+    | CartIsNotCreated
+    | CantBeAppliedToPaidCart
+    | RemovingNotAddedProduct of id:string

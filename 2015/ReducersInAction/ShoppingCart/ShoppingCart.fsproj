@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Rop.fs" />
+    <Compile Include="ErrorHandling.fs" />
     <Compile Include="Domain\Errors.fs" />
     <Compile Include="Domain\PrimitiveTypes.fs" />
     <Compile Include="Domain\ShoppingCart.fs" />

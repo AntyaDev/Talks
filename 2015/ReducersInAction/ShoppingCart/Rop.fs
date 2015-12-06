@@ -1,31 +1,47 @@
-﻿module Rop
+﻿[<AutoOpen>]
+module Rop
 
 type Result<'TSuccess,'TFailure> = 
-  | Success of 'TSuccess
-  | Failure of 'TFailure
+  | Ok of 'TSuccess
+  | Bad of 'TFailure
+
+/// Wraps a value in a Success
+let inline ok<'TSuccess,'TFailure> (x:'TSuccess) : Result<'TSuccess,'TFailure> = Ok(x)
+
+/// Wraps a message in a Failure
+let inline fail<'TSuccess,'TFailure> (msg:'TFailure) : Result<'TSuccess,'TFailure> = Bad(msg)
 
 let map f result = 
   match result with
-  | Success s -> s |> f |> Success
-  | Failure e -> Failure e
+  | Ok s -> s |> f |> Ok
+  | Bad e -> Bad e
+
+let inline (<!>) f result = map f result
 
 let map2 (f:'a -> 'b -> 'c) (result0:Result<'a,'e>) (result1:Result<'b,'e>) =
   match result0,result1 with
-  | (Success s0, Success s1) -> Success(f s0 s1)
-  | (Failure e0, _)          -> Failure e0
-  | (_, Failure e1)          -> Failure e1
+  | (Ok s0, Ok s1) -> Ok(f s0 s1)
+  | (Bad e0, _)          -> Bad e0
+  | (_, Bad e1)          -> Bad e1
  
 let bind f result = 
   match result with
-  | Success s -> f s
-  | Failure e -> Failure e
+  | Ok s -> f s
+  | Bad e -> Bad e
+
+let inline (>>=) result f = bind f result
+
+let inline (>=>) switch1 switch2 x = 
+   match switch1 x with
+   | Ok s -> switch2 s
+   | Bad f -> Bad f 
 
 let bind2 f input result =
   match result with
-  | Success s -> f input s
-  | Failure e -> Failure e
+  | Ok s -> f input s
+  | Bad e -> Bad e
 
 let get result = 
   match result with
-  | Success s -> s
-  | Failure f -> failwith "result contains failure."
+  | Ok s -> s
+  | Bad f -> failwith "result contains failure."
