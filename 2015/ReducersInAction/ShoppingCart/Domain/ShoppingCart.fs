@@ -60,13 +60,13 @@ module ShoppingCart =
     | Bad msg -> fail msg
 
       
-  let producer command (state:CartState) =
+  let producer (state:CartState) command =
     match command with
     | CreateCart cartId -> createCart(cartId)
     | AddProduct (id, qt) -> addProduct(id, qt, state)
     | RemoveProduct productId -> removeProduct(productId, state)
                     
-  let reducer event (state:CartState) =
+  let reducer (state:CartState) event =
     match event with
     | CartCreated cartId -> { state with Id = Some(cartId) }
     | ProductAdded product -> { state with Products = product :: state.Products }
