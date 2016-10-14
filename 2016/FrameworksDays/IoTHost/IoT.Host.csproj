@@ -196,6 +196,16 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IoT.Contracts\IoT.Contracts.csproj">
+      <Project>{961a4ba1-10fd-4b33-9b45-71ee029be1e3}</Project>
+      <Name>IoT.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IoT.Grains\IoT.Grains.csproj">
+      <Project>{8487aa65-8c11-4908-816e-b001f60d1a02}</Project>
+      <Name>IoT.Grains</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
