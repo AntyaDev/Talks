@@ -6,7 +6,7 @@ using Orleans.Runtime;
 using Serilog;
 using Topshelf;
 
-namespace IoTHost
+namespace IoT.Host
 {
     /// <summary>
     /// Orleans test silo host
