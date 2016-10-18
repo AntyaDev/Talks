@@ -4,9 +4,10 @@ using Orleans;
 
 namespace IoT.Contracts
 {
-    public interface IGeminiDeviceGrain : IGrainWithStringKey
+    public interface IDeviceGrain : IGrainWithStringKey
     {
         Task StartRun(string locationName);
+        Task FinishRun();
         Task HandleMetrics(Metrics message);
         Task HandleBattery(BatteryCapacity message);
     }
@@ -17,9 +18,9 @@ namespace IoT.Contracts
         Task HandleWarning(Warning message);
     }
 
-    public interface IViewAggregator : IGrainWithStringKey
-    {
-        IEnumerable<UserInfo> GetCurrentView();
-        Task<bool> UpdateUserInfo(UserInfo userInfo);
-    }
+    //public interface IViewAggregator : IGrainWithStringKey
+    //{
+    //    IEnumerable<UserInfo> GetCurrentView();
+    //    Task<bool> UpdateUserInfo(UserInfo userInfo);
+    //}
 }
