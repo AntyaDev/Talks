@@ -4,11 +4,6 @@ using Orleans;
 
 namespace IoT.Contracts
 {
-    public static class Streams
-    {
-        public static Guid Location = Guid.Parse("b6330bd6-df3e-45f8-a86d-a47e72a2fbf4");
-    }
-
     public interface IDeviceGrain : IGrainWithStringKey
     {
         Task UpdateRunnerState(RunnerState message);
@@ -16,9 +11,8 @@ namespace IoT.Contracts
         Task UpdateBattery(BatteryCapacity message);
     }
 
-    public interface IUserGrain : IGrainWithStringKey
+    public static class Streams
     {
-        Task<bool> AddNewDevice(string deviceId);
-        Task HandleWarning(Warning message);
+        public static Guid Location = Guid.Parse("b6330bd6-df3e-45f8-a86d-a47e72a2fbf4");
     }
 }

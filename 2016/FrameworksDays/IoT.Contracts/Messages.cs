@@ -38,17 +38,4 @@ namespace IoT.Contracts
         public uint Meters { get; set; }
         public DateTime Duration { get; set; }
     }
-
-    [Serializable]
-    public class Warning
-    {
-        public WarningType WarningType { get; set; }
-        public string Text { get; set; }
-    }
-
-    [Serializable]
-    public enum WarningType
-    {
-        
-    }
 }
