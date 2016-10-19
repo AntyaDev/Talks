@@ -53,14 +53,12 @@ namespace IoT.Contracts
                 case -673425859:
                     switch (@methodId)
                     {
-                        case -1465479330:
-                            return "StartRun";
-                        case 2134917235:
-                            return "FinishRun";
-                        case 1648747664:
-                            return "HandleMetrics";
-                        case -837205729:
-                            return "HandleBattery";
+                        case 1643804736:
+                            return "UpdateRunnerState";
+                        case 1300480962:
+                            return "UpdateMetrics";
+                        case 102508388:
+                            return "UpdateBattery";
                         default:
                             throw new global::System.NotImplementedException("interfaceId=" + -673425859 + ",methodId=" + @methodId);
                     }
@@ -77,24 +75,19 @@ namespace IoT.Contracts
             }
         }
 
-        public global::System.Threading.Tasks.Task @StartRun(global::System.String @locationName)
+        public global::System.Threading.Tasks.Task @UpdateRunnerState(global::IoT.Contracts.RunnerState @message)
         {
-            return base.@InvokeMethodAsync<global::System.Object>(-1465479330, new global::System.Object[]{@locationName});
+            return base.@InvokeMethodAsync<global::System.Object>(1643804736, new global::System.Object[]{@message});
         }
 
-        public global::System.Threading.Tasks.Task @FinishRun()
+        public global::System.Threading.Tasks.Task @UpdateMetrics(global::IoT.Contracts.Metrics @message)
         {
-            return base.@InvokeMethodAsync<global::System.Object>(2134917235, null);
+            return base.@InvokeMethodAsync<global::System.Object>(1300480962, new global::System.Object[]{@message});
         }
 
-        public global::System.Threading.Tasks.Task @HandleMetrics(global::IoT.Contracts.Metrics @message)
+        public global::System.Threading.Tasks.Task @UpdateBattery(global::IoT.Contracts.BatteryCapacity @message)
         {
-            return base.@InvokeMethodAsync<global::System.Object>(1648747664, new global::System.Object[]{@message});
-        }
-
-        public global::System.Threading.Tasks.Task @HandleBattery(global::IoT.Contracts.BatteryCapacity @message)
-        {
-            return base.@InvokeMethodAsync<global::System.Object>(-837205729, new global::System.Object[]{@message});
+            return base.@InvokeMethodAsync<global::System.Object>(102508388, new global::System.Object[]{@message});
         }
     }
 
@@ -115,14 +108,12 @@ namespace IoT.Contracts
                     case -673425859:
                         switch (methodId)
                         {
-                            case -1465479330:
-                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@StartRun((global::System.String)arguments[0]).@Box();
-                            case 2134917235:
-                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@FinishRun().@Box();
-                            case 1648747664:
-                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@HandleMetrics((global::IoT.Contracts.Metrics)arguments[0]).@Box();
-                            case -837205729:
-                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@HandleBattery((global::IoT.Contracts.BatteryCapacity)arguments[0]).@Box();
+                            case 1643804736:
+                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@UpdateRunnerState((global::IoT.Contracts.RunnerState)arguments[0]).@Box();
+                            case 1300480962:
+                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@UpdateMetrics((global::IoT.Contracts.Metrics)arguments[0]).@Box();
+                            case 102508388:
+                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@UpdateBattery((global::IoT.Contracts.BatteryCapacity)arguments[0]).@Box();
                             default:
                                 throw new global::System.NotImplementedException("interfaceId=" + -673425859 + ",methodId=" + methodId);
                         }
@@ -162,11 +153,11 @@ namespace IoT.Contracts
             global::IoT.Contracts.Metrics input = ((global::IoT.Contracts.Metrics)original);
             global::IoT.Contracts.Metrics result = new global::IoT.Contracts.Metrics();
             global::Orleans.@Serialization.@SerializationContext.@Current.@RecordObject(original, result);
+            result.@Distance = input.@Distance;
+            result.@Duration = input.@Duration;
             result.@Lat = input.@Lat;
             result.@Long = input.@Long;
-            result.@Meters = input.@Meters;
-            result.@StepsCounter = input.@StepsCounter;
-            result.@Time = input.@Time;
+            result.@StepsCount = input.@StepsCount;
             return result;
         }
 
@@ -174,11 +165,11 @@ namespace IoT.Contracts
         public static void Serializer(global::System.Object untypedInput, global::Orleans.Serialization.BinaryTokenStreamWriter stream, global::System.Type expected)
         {
             global::IoT.Contracts.Metrics input = (global::IoT.Contracts.Metrics)untypedInput;
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Distance, stream, typeof (global::System.Single));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Duration, stream, typeof (global::System.DateTime));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Lat, stream, typeof (global::System.Double));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Long, stream, typeof (global::System.Double));
-            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Meters, stream, typeof (global::System.UInt32));
-            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@StepsCounter, stream, typeof (global::System.UInt32));
-            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Time, stream, typeof (global::System.DateTime));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@StepsCount, stream, typeof (global::System.UInt32));
         }
 
         [global::Orleans.CodeGeneration.DeserializerMethodAttribute]
@@ -186,11 +177,11 @@ namespace IoT.Contracts
         {
             global::IoT.Contracts.Metrics result = new global::IoT.Contracts.Metrics();
             global::Orleans.@Serialization.@DeserializationContext.@Current.@RecordObject(result);
+            result.@Distance = (global::System.Single)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Single), stream);
+            result.@Duration = (global::System.DateTime)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.DateTime), stream);
             result.@Lat = (global::System.Double)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Double), stream);
             result.@Long = (global::System.Double)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Double), stream);
-            result.@Meters = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
-            result.@StepsCounter = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
-            result.@Time = (global::System.DateTime)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.DateTime), stream);
+            result.@StepsCount = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
             return (global::IoT.Contracts.Metrics)result;
         }
 
@@ -215,7 +206,7 @@ namespace IoT.Contracts
             global::IoT.Contracts.BatteryCapacity result = new global::IoT.Contracts.BatteryCapacity();
             global::Orleans.@Serialization.@SerializationContext.@Current.@RecordObject(original, result);
             result.@Capacity = input.@Capacity;
-            result.@Time = input.@Time;
+            result.@TimeStamp = input.@TimeStamp;
             return result;
         }
 
@@ -224,7 +215,7 @@ namespace IoT.Contracts
         {
             global::IoT.Contracts.BatteryCapacity input = (global::IoT.Contracts.BatteryCapacity)untypedInput;
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Capacity, stream, typeof (global::System.UInt32));
-            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Time, stream, typeof (global::System.DateTime));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@TimeStamp, stream, typeof (global::System.DateTime));
         }
 
         [global::Orleans.CodeGeneration.DeserializerMethodAttribute]
@@ -233,7 +224,7 @@ namespace IoT.Contracts
             global::IoT.Contracts.BatteryCapacity result = new global::IoT.Contracts.BatteryCapacity();
             global::Orleans.@Serialization.@DeserializationContext.@Current.@RecordObject(result);
             result.@Capacity = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
-            result.@Time = (global::System.DateTime)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.DateTime), stream);
+            result.@TimeStamp = (global::System.DateTime)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.DateTime), stream);
             return (global::IoT.Contracts.BatteryCapacity)result;
         }
 
@@ -257,6 +248,13 @@ namespace IoT.Contracts
             global::IoT.Contracts.UserInfo input = ((global::IoT.Contracts.UserInfo)original);
             global::IoT.Contracts.UserInfo result = new global::IoT.Contracts.UserInfo();
             global::Orleans.@Serialization.@SerializationContext.@Current.@RecordObject(original, result);
+            result.@Duration = input.@Duration;
+            result.@Lat = input.@Lat;
+            result.@Long = input.@Long;
+            result.@Meters = input.@Meters;
+            result.@RunnerState = input.@RunnerState;
+            result.@StepsCount = input.@StepsCount;
+            result.@UserName = input.@UserName;
             return result;
         }
 
@@ -264,6 +262,13 @@ namespace IoT.Contracts
         public static void Serializer(global::System.Object untypedInput, global::Orleans.Serialization.BinaryTokenStreamWriter stream, global::System.Type expected)
         {
             global::IoT.Contracts.UserInfo input = (global::IoT.Contracts.UserInfo)untypedInput;
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Duration, stream, typeof (global::System.DateTime));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Lat, stream, typeof (global::System.Double));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Long, stream, typeof (global::System.Double));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Meters, stream, typeof (global::System.UInt32));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@RunnerState, stream, typeof (global::IoT.Contracts.RunnerState));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@StepsCount, stream, typeof (global::System.UInt32));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@UserName, stream, typeof (global::System.String));
         }
 
         [global::Orleans.CodeGeneration.DeserializerMethodAttribute]
@@ -271,6 +276,13 @@ namespace IoT.Contracts
         {
             global::IoT.Contracts.UserInfo result = new global::IoT.Contracts.UserInfo();
             global::Orleans.@Serialization.@DeserializationContext.@Current.@RecordObject(result);
+            result.@Duration = (global::System.DateTime)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.DateTime), stream);
+            result.@Lat = (global::System.Double)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Double), stream);
+            result.@Long = (global::System.Double)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Double), stream);
+            result.@Meters = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
+            result.@RunnerState = (global::IoT.Contracts.RunnerState)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::IoT.Contracts.RunnerState), stream);
+            result.@StepsCount = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
+            result.@UserName = (global::System.String)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.String), stream);
             return (global::IoT.Contracts.UserInfo)result;
         }
 
