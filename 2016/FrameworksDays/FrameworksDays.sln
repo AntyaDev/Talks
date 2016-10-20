@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoT.Contracts", "IoT.Contra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoT.Grains", "IoT.Grains\IoT.Grains.csproj", "{8487AA65-8C11-4908-816E-B001F60D1A02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoT.Client", "IoT.Client\IoT.Client.csproj", "{2E70CE6D-42D3-47C2-A1B9-B161FE68FDA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoT.DeviceClient", "IoT.DeviceClient\IoT.DeviceClient.csproj", "{2E70CE6D-42D3-47C2-A1B9-B161FE68FDA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

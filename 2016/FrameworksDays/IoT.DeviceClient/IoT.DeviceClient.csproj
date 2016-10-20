@@ -7,8 +7,8 @@
     <ProjectGuid>{2E70CE6D-42D3-47C2-A1B9-B161FE68FDA4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IoT.Client</RootNamespace>
-    <AssemblyName>IoT.Client</AssemblyName>
+    <RootNamespace>IoT.DeviceClient</RootNamespace>
+    <AssemblyName>IoT.DeviceClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

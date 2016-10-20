@@ -248,10 +248,10 @@ namespace IoT.Contracts
             global::IoT.Contracts.UserInfo input = ((global::IoT.Contracts.UserInfo)original);
             global::IoT.Contracts.UserInfo result = new global::IoT.Contracts.UserInfo();
             global::Orleans.@Serialization.@SerializationContext.@Current.@RecordObject(original, result);
+            result.@Distance = input.@Distance;
             result.@Duration = input.@Duration;
             result.@Lat = input.@Lat;
             result.@Long = input.@Long;
-            result.@Meters = input.@Meters;
             result.@RunnerState = input.@RunnerState;
             result.@StepsCount = input.@StepsCount;
             result.@UserName = input.@UserName;
@@ -262,10 +262,10 @@ namespace IoT.Contracts
         public static void Serializer(global::System.Object untypedInput, global::Orleans.Serialization.BinaryTokenStreamWriter stream, global::System.Type expected)
         {
             global::IoT.Contracts.UserInfo input = (global::IoT.Contracts.UserInfo)untypedInput;
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Distance, stream, typeof (global::System.Single));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Duration, stream, typeof (global::System.DateTime));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Lat, stream, typeof (global::System.Double));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Long, stream, typeof (global::System.Double));
-            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Meters, stream, typeof (global::System.UInt32));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@RunnerState, stream, typeof (global::IoT.Contracts.RunnerState));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@StepsCount, stream, typeof (global::System.UInt32));
             global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@UserName, stream, typeof (global::System.String));
@@ -276,10 +276,10 @@ namespace IoT.Contracts
         {
             global::IoT.Contracts.UserInfo result = new global::IoT.Contracts.UserInfo();
             global::Orleans.@Serialization.@DeserializationContext.@Current.@RecordObject(result);
+            result.@Distance = (global::System.Single)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Single), stream);
             result.@Duration = (global::System.DateTime)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.DateTime), stream);
             result.@Lat = (global::System.Double)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Double), stream);
             result.@Long = (global::System.Double)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Double), stream);
-            result.@Meters = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
             result.@RunnerState = (global::IoT.Contracts.RunnerState)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::IoT.Contracts.RunnerState), stream);
             result.@StepsCount = (global::System.UInt32)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.UInt32), stream);
             result.@UserName = (global::System.String)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.String), stream);

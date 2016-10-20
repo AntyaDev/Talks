@@ -35,7 +35,7 @@ namespace IoT.Contracts
         public double Lat { get; set; }
         public double Long { get; set; }
         public uint StepsCount { get; set; }
-        public uint Meters { get; set; }
+        public float Distance { get; set; }
         public DateTime Duration { get; set; }
     }
 }

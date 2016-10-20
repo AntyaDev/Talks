@@ -96,7 +96,16 @@ namespace IoT.Grains
 
         public UserInfo GetUserInfo()
         {
-            throw new NotImplementedException();
+            return new UserInfo
+            {
+                RunnerState = RunnerState,
+                Duration = Duration,
+                Distance = Distance,
+                Lat = Lat,
+                Long = Long,
+                StepsCount = StepsCount,
+                UserName = UserName
+            };
         }
     }
 }
