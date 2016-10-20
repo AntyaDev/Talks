@@ -180,12 +180,6 @@
     <None Include="OrleansCluster.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="OrleansCluster.Debug.config">
-      <DependentUpon>OrleansCluster.config</DependentUpon>
-    </None>
-    <None Include="OrleansCluster.Release.config">
-      <DependentUpon>OrleansCluster.config</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

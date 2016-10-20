@@ -12,7 +12,7 @@ namespace IoT.Grains
         public override Task OnActivateAsync()
         {
             var userId = this.GetPrimaryKeyString();
-
+            
             _state.SetUser(userId);
 
             this.RegisterTimer(SendMetricsToLocation, _state, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(3));
@@ -51,7 +51,7 @@ namespace IoT.Grains
             var userInfo = state.GetUserInfo();
 
             var stream = this.GetStreamProvider("sms")
-                             .GetStream<UserInfo>(Streams.Location, state.LocationName);
+                             .GetStream<UserInfo>(Streams.Location, state.Location);
 
             stream.OnNextAsync(userInfo);
             return TaskDone.Done;
@@ -62,7 +62,7 @@ namespace IoT.Grains
     {
         public string UserName { get; private set; } = string.Empty;
         public RunnerState RunnerState { get; private set; } = RunnerState.Stopped;
-        public string LocationName { get; private set; }
+        public string Location { get; private set; }
         public double Lat { get; private set; }
         public double Long { get; private set; }
         public uint StepsCount { get; private set; }
@@ -77,12 +77,12 @@ namespace IoT.Grains
 
         public void SetLocation(string location)
         {
-            LocationName = location;
+            Location = location;
         }
 
         public void UpdateLocationName(string locationName)
         {
-            LocationName = locationName;
+            Location = locationName;
         }
 
         public void UpdateMetrics(Metrics message)

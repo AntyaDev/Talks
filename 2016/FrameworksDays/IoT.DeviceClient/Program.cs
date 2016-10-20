@@ -40,6 +40,7 @@ namespace IoT.DeviceClient
             Console.WriteLine("Start running...");
 
             var deviceGrain = GrainClient.GrainFactory.GetGrain<IDeviceGrain>(userName);
+
             await deviceGrain.SetLocation(location);
             await deviceGrain.UpdateRunnerState(RunnerState.Running);
 
