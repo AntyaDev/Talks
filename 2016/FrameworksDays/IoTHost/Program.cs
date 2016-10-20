@@ -42,9 +42,10 @@ namespace IoT.Host
 
                 x.RunAsLocalSystem();
 
-                x.SetDescription("Orleans IoTHost");
-                x.SetDisplayName("Orleans IoTHost");
-                x.SetServiceName("Orleans IoTHost");
+                var serviceName = nameof(IoT.Host);
+                x.SetDescription($"Orleans {serviceName}");
+                x.SetDisplayName($"Orleans {serviceName}");
+                x.SetServiceName($"Orleans {serviceName}");
             });
         }
     }
