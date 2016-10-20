@@ -6,9 +6,10 @@ namespace IoT.Contracts
 {
     public interface IDeviceGrain : IGrainWithStringKey
     {
-        Task UpdateRunnerState(RunnerState message);
-        Task UpdateMetrics(Metrics message);
-        Task UpdateBattery(BatteryCapacity message);
+        Task<bool> SetLocation(string location);
+        Task<bool> UpdateRunnerState(RunnerState message);
+        Task<bool> UpdateMetrics(Metrics message);
+        Task<bool> UpdateBattery(BatteryCapacity message);
     }
 
     public static class Streams

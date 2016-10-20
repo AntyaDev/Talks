@@ -13,29 +13,35 @@ namespace IoT.Grains
         {
             var userId = this.GetPrimaryKeyString();
 
-            _state.AssignUser(userId);
+            _state.SetUser(userId);
 
             this.RegisterTimer(SendMetricsToLocation, _state, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(3));
 
             return base.OnActivateAsync();
         }
 
-        public Task UpdateRunnerState(RunnerState message)
+        public Task<bool> SetLocation(string location)
+        {
+            _state.SetLocation(location);
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> UpdateRunnerState(RunnerState message)
         {
             _state.UpdateRunnerState(message);
-            return TaskDone.Done;
+            return Task.FromResult(true);
         }
 
-        public Task UpdateMetrics(Metrics message)
+        public Task<bool> UpdateMetrics(Metrics message)
         {
             _state.UpdateMetrics(message);
-            return TaskDone.Done;
+            return Task.FromResult(true);
         }
 
-        public Task UpdateBattery(BatteryCapacity message)
+        public Task<bool> UpdateBattery(BatteryCapacity message)
         {
             _state.UpdateBattery(message);
-            return TaskDone.Done;
+            return Task.FromResult(true);
         }
 
         Task SendMetricsToLocation(object s)
@@ -64,9 +70,14 @@ namespace IoT.Grains
         public DateTime Duration { get; private set; }
         public BatteryCapacity BatteryCapacity { get; private set; }
 
-        public void AssignUser(string userName)
+        public void SetUser(string userName)
         {
             UserName = userName;
+        }
+
+        public void SetLocation(string location)
+        {
+            LocationName = location;
         }
 
         public void UpdateLocationName(string locationName)

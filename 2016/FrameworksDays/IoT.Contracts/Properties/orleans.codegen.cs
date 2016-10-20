@@ -53,6 +53,8 @@ namespace IoT.Contracts
                 case -673425859:
                     switch (@methodId)
                     {
+                        case 486430725:
+                            return "SetLocation";
                         case 1643804736:
                             return "UpdateRunnerState";
                         case 1300480962:
@@ -75,19 +77,24 @@ namespace IoT.Contracts
             }
         }
 
-        public global::System.Threading.Tasks.Task @UpdateRunnerState(global::IoT.Contracts.RunnerState @message)
+        public global::System.Threading.Tasks.Task<global::System.Boolean> @SetLocation(global::System.String @location)
         {
-            return base.@InvokeMethodAsync<global::System.Object>(1643804736, new global::System.Object[]{@message});
+            return base.@InvokeMethodAsync<global::System.Boolean>(486430725, new global::System.Object[]{@location});
         }
 
-        public global::System.Threading.Tasks.Task @UpdateMetrics(global::IoT.Contracts.Metrics @message)
+        public global::System.Threading.Tasks.Task<global::System.Boolean> @UpdateRunnerState(global::IoT.Contracts.RunnerState @message)
         {
-            return base.@InvokeMethodAsync<global::System.Object>(1300480962, new global::System.Object[]{@message});
+            return base.@InvokeMethodAsync<global::System.Boolean>(1643804736, new global::System.Object[]{@message});
         }
 
-        public global::System.Threading.Tasks.Task @UpdateBattery(global::IoT.Contracts.BatteryCapacity @message)
+        public global::System.Threading.Tasks.Task<global::System.Boolean> @UpdateMetrics(global::IoT.Contracts.Metrics @message)
         {
-            return base.@InvokeMethodAsync<global::System.Object>(102508388, new global::System.Object[]{@message});
+            return base.@InvokeMethodAsync<global::System.Boolean>(1300480962, new global::System.Object[]{@message});
+        }
+
+        public global::System.Threading.Tasks.Task<global::System.Boolean> @UpdateBattery(global::IoT.Contracts.BatteryCapacity @message)
+        {
+            return base.@InvokeMethodAsync<global::System.Boolean>(102508388, new global::System.Object[]{@message});
         }
     }
 
@@ -108,6 +115,8 @@ namespace IoT.Contracts
                     case -673425859:
                         switch (methodId)
                         {
+                            case 486430725:
+                                return ((global::IoT.Contracts.IDeviceGrain)@grain).@SetLocation((global::System.String)arguments[0]).@Box();
                             case 1643804736:
                                 return ((global::IoT.Contracts.IDeviceGrain)@grain).@UpdateRunnerState((global::IoT.Contracts.RunnerState)arguments[0]).@Box();
                             case 1300480962:
