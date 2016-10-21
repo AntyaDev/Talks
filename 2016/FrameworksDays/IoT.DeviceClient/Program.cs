@@ -30,7 +30,7 @@ namespace IoT.DeviceClient
             Console.WriteLine("Please enter Challenge...");
             var challenge = Console.ReadLine();
 
-            Task.Run(() => StartRunning(deviceId, name, challenge).Wait()).Wait();
+            StartRunning(deviceId, name, challenge).Wait();
             
             Console.ReadLine();
         }
