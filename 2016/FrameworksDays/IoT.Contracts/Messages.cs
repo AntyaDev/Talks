@@ -7,35 +7,24 @@ namespace IoT.Contracts
     {   
         Running,
         Paused,
-        Stopped
+        Finished
     }
 
     [Serializable]
-    public class Metrics
+    public class Step
     {
         public double Lat { get; set; }
         public double Long { get; set; }
-        public uint StepsCount { get; set; }
-        public float Distance { get; set; }
-        public DateTime Duration { get; set; }
-    }
-
-    [Serializable]
-    public class BatteryCapacity
-    {
-        public uint Capacity { get; set; }
         public DateTime TimeStamp { get; set; }
     }
 
     [Serializable]
-    public class UserInfo
+    public class RunnerMetrics
     {
-        public string UserName { get; set; }
+        public string RunnerName { get; set; }
         public RunnerState RunnerState { get; set; }
         public double Lat { get; set; }
         public double Long { get; set; }
         public uint StepsCount { get; set; }
-        public float Distance { get; set; }
-        public DateTime Duration { get; set; }
     }
 }

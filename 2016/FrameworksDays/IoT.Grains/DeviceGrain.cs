@@ -11,18 +11,23 @@ namespace IoT.Grains
 
         public override Task OnActivateAsync()
         {
-            var userId = this.GetPrimaryKeyString();
-            
-            _state.SetUser(userId);
+            var deviceId = this.GetPrimaryKeyString();
+            _state.SetDeviceId(deviceId);
 
-            this.RegisterTimer(SendMetricsToLocation, _state, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(3));
+            this.RegisterTimer(SendRunnerMetricsToChallenge, _state, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(3));
 
             return base.OnActivateAsync();
         }
 
-        public Task<bool> SetLocation(string location)
+        public Task<bool> SetRunnerName(string runnerName)
         {
-            _state.SetLocation(location);
+            _state.SetRunnerName(this.GetPrimaryKeyString());
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> SetChallengeName(string challengeName)
+        {
+            _state.SetChallengeName(challengeName);
             return Task.FromResult(true);
         }
 
@@ -32,72 +37,54 @@ namespace IoT.Grains
             return Task.FromResult(true);
         }
 
-        public Task<bool> UpdateMetrics(Metrics message)
+        public Task<bool> UpdateSteps(Step message)
         {
-            _state.UpdateMetrics(message);
+            _state.UpdateSteps(message);
             return Task.FromResult(true);
         }
 
-        public Task<bool> UpdateBattery(BatteryCapacity message)
+        Task SendRunnerMetricsToChallenge(object s)
         {
-            _state.UpdateBattery(message);
-            return Task.FromResult(true);
-        }
-
-        Task SendMetricsToLocation(object s)
-        {
-            var state = (DeviceState)s;
-
-            var userInfo = state.GetUserInfo();
+            var metrics = _state.GetRunnerMetrics();
 
             var stream = this.GetStreamProvider("sms")
-                             .GetStream<UserInfo>(Streams.Location, state.Location);
+                             .GetStream<RunnerMetrics>(Streams.Challenge, _state.ChallengeName);
 
-            stream.OnNextAsync(userInfo);
+            stream.OnNextAsync(metrics);
             return TaskDone.Done;
         }
     }
 
     class DeviceState
     {
-        public string UserName { get; private set; } = string.Empty;
-        public RunnerState RunnerState { get; private set; } = RunnerState.Stopped;
-        public string Location { get; private set; }
+        public string Id { get; private set; }
+        public string RunnerName { get; private set; } = string.Empty;
+        public RunnerState RunnerState { get; private set; } = RunnerState.Finished;
+        public string ChallengeName { get; private set; }
         public double Lat { get; private set; }
         public double Long { get; private set; }
         public uint StepsCount { get; private set; }
-        public float Distance { get; private set; }
-        public DateTime Duration { get; private set; }
-        public BatteryCapacity BatteryCapacity { get; private set; }
 
-        public void SetUser(string userName)
+        public void SetDeviceId(string deviceId)
         {
-            UserName = userName;
+            Id = deviceId;
         }
 
-        public void SetLocation(string location)
+        public void SetRunnerName(string userName)
         {
-            Location = location;
+            RunnerName = userName;
         }
 
-        public void UpdateLocationName(string locationName)
+        public void SetChallengeName(string challengeName)
         {
-            Location = locationName;
+            ChallengeName = challengeName;
         }
 
-        public void UpdateMetrics(Metrics message)
+        public void UpdateSteps(Step message)
         {
             Lat = message.Lat;
             Long = message.Long;
-            StepsCount = StepsCount + message.StepsCount;
-            Distance = Distance + message.Distance;
-            Duration = message.Duration;
-            BatteryCapacity = BatteryCapacity;
-        }
-
-        public void UpdateBattery(BatteryCapacity message)
-        {   
-            BatteryCapacity = message;
+            StepsCount += 1;
         }
 
         public void UpdateRunnerState(RunnerState message)
@@ -105,17 +92,15 @@ namespace IoT.Grains
             RunnerState = message;
         }
 
-        public UserInfo GetUserInfo()
+        public RunnerMetrics GetRunnerMetrics()
         {
-            return new UserInfo
+            return new RunnerMetrics
             {
                 RunnerState = RunnerState,
-                Duration = Duration,
-                Distance = Distance,
                 Lat = Lat,
                 Long = Long,
                 StepsCount = StepsCount,
-                UserName = UserName
+                RunnerName = RunnerName
             };
         }
     }

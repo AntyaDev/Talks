@@ -7,8 +7,8 @@
     <ProjectGuid>{6A5C5A88-243C-4AF0-A3A4-B7CC7414B80A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IoT.LocationClient</RootNamespace>
-    <AssemblyName>IoT.LocationClient</AssemblyName>
+    <RootNamespace>IoT.ChallengeClient</RootNamespace>
+    <AssemblyName>IoT.ChallengeClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
