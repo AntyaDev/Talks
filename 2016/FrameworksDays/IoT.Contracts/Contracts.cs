@@ -8,8 +8,8 @@ namespace IoT.Contracts
     {
         Task<bool> SetRunnerName(string runnerName);
         Task<bool> SetChallengeName(string challengeName);
-        Task<bool> UpdateRunnerState(RunnerState message);
-        Task<bool> UpdateSteps(Step message);
+        Task<bool> UpdateRunnerState(RunnerState runnerState);
+        Task<bool> UpdateSteps(Step step);
     }
 
     public static class Streams
