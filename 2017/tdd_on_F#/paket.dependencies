@@ -1,0 +1,11 @@
+source https://www.nuget.org/api/v2
+nuget Chessie
+nuget Expecto
+nuget Expecto.FsCheck
+nuget FAKE
+nuget FSharp.Core
+nuget Suave
+nuget Newtonsoft.Json
+nuget Serilog
+nuget FSharp.Data
+nuget FSharp.DependentTypes
